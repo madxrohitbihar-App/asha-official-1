@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Access Key - MADXROHITBIHAR</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #05050a;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: rgba(13, 15, 26, 0.9);
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 380px;
+            width: 90%;
+            box-shadow: 0 0 30px rgba(0, 242, 254, 0.2);
+        }
+        h2 {
+            color: #00f2fe;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        p {
+            color: #94a3b8;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+        .key-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #00f2fe;
+            padding: 12px;
+            font-size: 15px;
+            font-weight: bold;
+            color: #00ff66;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            word-break: break-all;
+        }
+        .copy-btn {
+            background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.2s;
+        }
+        .copy-btn:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>Your Access Key</h2>
+        <p>Is key ko copy karein aur apni app me paste karke unlock karein.</p>
+        
+        <div class="key-box" id="displayKey">GENERATING...</div>
+        
+        <button class="copy-btn" onclick="copyKey()"><i class="fa-solid fa-copy"></i> Copy Key</button>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        let key = urlParams.get('key');
+
+        // Yahan loop ko 20 se badha kar 21 kar diya gaya hai
+        if (!key) {
+            const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            key = '';
+            for (let i = 0; i < 21; i++) {
+                key += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+        }
+
+        document.getElementById('displayKey').innerText = key;
+
+        function copyKey() {
+            navigator.clipboard.writeText(key).then(() => {
+                alert("Key Copied Successfully! Ab app me jaakar paste karein.");
+            }).catch(() => {
+                let textarea = document.createElement("textarea");
+                textarea.value = key;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand("copy");
+                document.body.removeChild(textarea);
+                alert("Key Copied Successfully!");
+            });
+        }
+    </script>
+</body>
+</html>
