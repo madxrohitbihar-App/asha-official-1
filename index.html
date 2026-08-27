@@ -80,11 +80,11 @@
         const urlParams = new URLSearchParams(window.location.search);
         let key = urlParams.get('key');
 
-        // Yahan loop ko 20 se badha kar 21 kar diya gaya hai
+        // Yahan loop ko 28 kar diya gaya hai taaki 28 characters ki key generate ho
         if (!key) {
             const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
             key = '';
-            for (let i = 0; i < 21; i++) {
+            for (let i = 0; i < 28; i++) {
                 key += chars.charAt(Math.floor(Math.random() * chars.length));
             }
         }
